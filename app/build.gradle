@@ -1,9 +1,10 @@
 apply plugin: 'com.android.application'
-apply plugin: 'com.neenbedankt.android-apt'
+//apply plugin: 'com.neenbedankt.android-apt'
+apply plugin: 'kotlin-android'
 
 android {
     compileSdkVersion 24
-    buildToolsVersion "24.0.0"
+    buildToolsVersion "24.0.1"
 
     defaultConfig {
         applicationId "net.yslibrary.requeryexample"
@@ -27,16 +28,25 @@ android {
     }
     dataBinding {
         enabled = true
+        version = "2.1.2"
     }
 }
 
 dependencies {
     compile 'com.android.support:appcompat-v7:24.1.1'
     compile 'com.android.support:recyclerview-v7:24.1.1'
+
+    compile "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
+    compile "org.jetbrains.kotlin:kotlin-reflect:$kotlin_version"
+
     compile 'io.reactivex:rxjava:1.1.5'
     compile 'io.reactivex:rxandroid:1.1.0'
     compile 'io.requery:sqlite-android:3.13.0-1'
     compile 'io.requery:requery:1.0.0-rc2'
     compile 'io.requery:requery-android:1.0.0-rc2'
-    apt 'io.requery:requery-processor:1.0.0-rc2'
+    kapt 'io.requery:requery-processor:1.0.0-rc2'
+    kapt "com.android.databinding:compiler:${android.dataBinding.version}"
+}
+kapt {
+    generateStubs = true
 }

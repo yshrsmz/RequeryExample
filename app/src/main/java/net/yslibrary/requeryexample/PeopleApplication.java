@@ -18,6 +18,7 @@ package net.yslibrary.requeryexample;
 
 import android.app.Application;
 import android.os.StrictMode;
+import android.support.annotation.NonNull;
 
 import net.yslibrary.requeryexample.model.Models;
 
@@ -45,6 +46,7 @@ public class PeopleApplication extends Application {
    * Note if you're using Dagger you can make this part of your application level module returning
    * {@code @Provides @Singleton}.
    */
+  @NonNull
   SingleEntityStore<Persistable> getData() {
     if (dataStore == null) {
       // override onUpgrade to handle migrating to a new version

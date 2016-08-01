@@ -14,17 +14,38 @@
  * limitations under the License.
  */
 
-package net.yslibrary.requeryexample;
+package net.yslibrary.requeryexample.model
 
-import android.databinding.ViewDataBinding;
-import android.support.v7.widget.RecyclerView;
 
-class BindingHolder<B extends ViewDataBinding> extends RecyclerView.ViewHolder {
+import android.databinding.Bindable
+import android.databinding.Observable
+import android.os.Parcelable
+import io.requery.*
 
-  protected final B binding;
+@Entity
+interface Address : Observable, Parcelable, Persistable {
 
-  public BindingHolder(B binding) {
-    super(binding.getRoot());
-    this.binding = binding;
-  }
+  @get:[Key Generated]
+  val id: Int
+
+  @get:Bindable
+  var line1: String
+
+  @get:Bindable
+  var line2: String
+
+  @get:Bindable
+  var zip: String
+
+  @get:Bindable
+  var country: String
+
+  @get:Bindable
+  var city: String
+
+  @get:[Bindable]
+  var state: String
+
+  @get:[Bindable OneToOne(mappedBy = "address")]
+  val person: Person
 }
