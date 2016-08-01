@@ -52,5 +52,5 @@ interface Person : Observable, Parcelable, Persistable {
   val uuid: UUID
 
   @get:OneToMany(mappedBy = "owner", cascade = arrayOf(CascadeAction.DELETE, CascadeAction.SAVE))
-  val phoneNumberList: List<Phone>
+  val phoneNumberList: MutableList<Phone>
 }
